@@ -2,6 +2,6 @@
 
 A simple react project
 
-Currently, two official plugins are available:
+Link to the movie:
 
-- [movies](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) 
+[movies](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) 
