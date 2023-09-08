@@ -566,6 +566,30 @@ video {
   top: 1rem;
 }
 
+.left-20 {
+  left: 5rem;
+}
+
+.left-2 {
+  left: 0.5rem;
+}
+
+.left-3 {
+  left: 0.75rem;
+}
+
+.left-36 {
+  left: 9rem;
+}
+
+.left-40 {
+  left: 10rem;
+}
+
+.left-44 {
+  left: 11rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -708,6 +732,10 @@ video {
 @media (min-width: 768px) {
   .md\:fixed {
     position: fixed;
+  }
+
+  .md\:left-1\/2 {
+    left: 50%;
   }
 
   .md\:ml-60 {
