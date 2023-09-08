@@ -19,7 +19,7 @@ function Main({ movies, spinRef, onLoaded }) {
 
     return (
         <div className="main-container w-full md:ml-60">
-            <p className=" text-orange-600 absolute right-2/4 top-2/4 text-8xl animate-spin" ref={spinRef}><i className="fa fa-spinner" aria-hidden="true"></i></p>
+            <p className=" text-orange-600 absolute left-1/2 top-2/4 text-8xl animate-spin" ref={spinRef}><i className="fa fa-spinner" aria-hidden="true"></i></p>
             <div className="inner-container  grid gap-4 grid-cols-1 md:grid-cols-3 p-6 border-gray-700 border mt-20" style={ { color:"#FFFFF0"}}>
                 { genremovies }
                 {window.scroll({
