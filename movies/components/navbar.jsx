@@ -20,14 +20,14 @@ function Navbar({ navbarRef, onGenreClick}) {
 
     }, []);
 
-    const genres = genreList.map(genre => <li className="items mt-2 text-sm font-bold hover:text-orange-600 hover:cursor-pointer" key={ genre.id } onClick={ () => onGenreClick(genre.id) }>{ genre.name }</li>
+    const genres = genreList.map(genre => <li className="items mt-2 text-sm hover:text-orange-600 hover:cursor-pointer" key={ genre.id } onClick={ () => onGenreClick(genre.id) }>{ genre.name }</li> 
         // console.log(genre.id, genre.name);
     );
     // console.log(genres)
     return (
-        <div className="hidden md:block nav-container w-1/4 text-gray-300 p-6 md:fixed left-0 opacity-1" ref={ navbarRef }>
+        <div className="hidden md:block nav-container w-2/5 opacity-100 md:w-1/4 p-2 md:p-6 md:fixed left-0 opacity-1" ref={ navbarRef } style={ { color: "#FFFFF0" } }>
             <nav className="mt-20">
-                <ul className="grid">
+                <ul className="grid fixed">
                     { genres }
                 </ul>
             </nav>

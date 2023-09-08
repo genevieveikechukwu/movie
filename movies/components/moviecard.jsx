@@ -3,7 +3,7 @@
 function Main({ movies, spinRef, onLoaded }) {
 
     const genremovies = movies.map((movie, index) => {
-        return (<div className="movie-card bg-gray-700 rounded-t-lg" key={ index } onLoad={ onLoaded }>
+        return (<div className="movie-card  rounded-t-lg" key={ index } onLoad={ onLoaded } style={ { background:"#0D0D0D" }}>
             <figure className="">
                 <img
                     src={ `https://image.tmdb.org/t/p/w500${movie.poster_path}` }
@@ -20,8 +20,12 @@ function Main({ movies, spinRef, onLoaded }) {
     return (
         <div className="main-container w-full md:ml-60">
             <p className=" text-orange-600 absolute right-2/4 top-2/4 text-8xl animate-spin" ref={spinRef}><i className="fa fa-spinner" aria-hidden="true"></i></p>
-            <div className="inner-container  grid gap-4 grid-cols-1 md:grid-cols-3 p-6 border-gray-700 border text-gray-300 mt-20">
+            <div className="inner-container  grid gap-4 grid-cols-1 md:grid-cols-3 p-6 border-gray-700 border mt-20" style={ { color:"#FFFFF0"}}>
                 { genremovies }
+                {window.scroll({
+                    top:0,
+                    behavior:"smooth",
+                })}
             </div>
         </div>
     );

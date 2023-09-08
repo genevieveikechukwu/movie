@@ -16,8 +16,8 @@ function Button({ navbarRef }) {
 
     return (
         <div className="fixed left-4 top-4">
-            <p className="absolute  md:hidden text-orange-600 hover:cursor-pointer" onClick={ toggleNavbar } ref={ burgerRef }><i className="fa fa-bars fa-2x"></i></p>
-            <p className="absolute hidden md:hidden text-orange-600 hover:cursor-pointer" ref={ closeRef } onClick={ toggleNavbar }><i className="fa fa-close fa-2x"></i></p>
+            <p className="absolute  md:hidden text-orange-600 hover:cursor-pointer text-2xl" onClick={ toggleNavbar } ref={ burgerRef }><i className="fa fa-bars "></i></p>
+            <p className="absolute hidden md:hidden text-orange-600 hover:cursor-pointer text-2xl" ref={ closeRef } onClick={ toggleNavbar }><i className="fa fa-close "></i></p>
         </div>
     );
 }
