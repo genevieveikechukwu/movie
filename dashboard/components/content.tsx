@@ -64,7 +64,7 @@ export default function Inventory() {
                             key: 'actions',
                             render: (text) => (
                                 <Space size="middle">
-                                    <Button icon={<EditFilled />} onClick={showModal}>
+                                    <Button icon={<EditFilled />} onClick={showModal} style={{ color: "#2123bf" }} >
                                         Edit
                                     </Button>
                                     <Button icon={<DeleteFilled />} onClick={() => text} danger className='danger'>
