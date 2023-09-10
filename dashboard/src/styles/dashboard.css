@@ -11,9 +11,9 @@ font-size: 15px;
     font-weight: 700;
 }
 
-button{
-    background-color:#2123bf !important ;
+.danger{
     color: aliceblue !important;
+    background-color: #f5334d !important;
 }
 .mobile{
     font-size: 3em;

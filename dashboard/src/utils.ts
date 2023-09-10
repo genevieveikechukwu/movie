@@ -11,24 +11,6 @@ interface DataType {
 
 export const data: DataType[] = [
   {
-    key: '2',
-    productCode: 'DEF456',
-    product: 'Product B',
-    instruction: 'Installation Needed',
-    status: 'Inactive',
-    date: '2023-02-20',
-    quantity: '200/300',
-  },
-  {
-    key: '3',
-    productCode: 'GHI789',
-    product: 'Product C',
-    instruction: 'User Manual Included',
-    status: 'Active',
-    date: '2023-03-10',
-    quantity: '800/800',
-  },
-  {
     key: '4',
     productCode: 'JKL012',
     product: 'Product D',
