@@ -3,7 +3,7 @@ import { EditFilled, DeleteFilled, PlusCircleFilled } from '@ant-design/icons';
 import { useState, useEffect, } from 'react';
 const { Search } = Input;
 const { Content } = Layout;
-import { collection, getDocs, addDoc, updateDoc, doc } from '@firebase/firestore'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from '@firebase/firestore'
 import { db } from '../src/firebaseConfig';
 import { Dayjs } from 'dayjs';
 
@@ -90,7 +90,6 @@ export default function Inventory() {
     const editModal = (record: any) => {
         setTitle("Edit Product")
         setValue({ ...record })
-        // console.log(record)
         setOpen(true)
     }
 
@@ -105,6 +104,11 @@ export default function Inventory() {
             ...formData,
             [name]: value,
         });
+    }
+
+    const deleteStock = async (id: string) => {
+        const stocksDoc = doc(db, "stocks", id)
+        await deleteDoc(stocksDoc)
     }
 
     const pagination = {
@@ -148,7 +152,7 @@ export default function Inventory() {
                         <Button icon={<EditFilled />} onClick={() => editModal(record)} style={{ color: "#2123bf" }}>
                             Edit
                         </Button>
-                        <Button icon={<DeleteFilled />} onClick={() => console.log(text)} danger className='danger'>
+                        <Button icon={<DeleteFilled />} onClick={() => deleteStock(record.id)} danger className='danger'>
                             Delete
                         </Button>
                     </Space>
