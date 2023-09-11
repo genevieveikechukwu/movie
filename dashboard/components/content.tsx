@@ -25,25 +25,10 @@ export default function Inventory() {
     }
     const [open, setOpen] = useState(false);
     const [stocks, setStocks] = useState<DataType[]>([]);
-    const [formData, setFormData] = useState({
-        code: '',
-        name: '',
-        instruction: '',
-        status: 'pending',
-        date: '', // Date value, initialize it as needed
-        quantity: 0,
-    });
+    const [formData, setFormData] = useState(empty)
     const [date, setDate] = useState<Dayjs | null>(null);
     const [title, setTitle] = useState("");
-    const [value, setValue] = useState({
-        id: '',
-        code: '',
-        name: '',
-        instruction: '',
-        status: 'pending',
-        date: '', // Date value, initialize it as needed
-        quantity: 0,
-    });
+    const [values, setValue] = useState(empty)
 
 
     const stocksCollections = collection(db, "stocks");
@@ -64,7 +49,7 @@ export default function Inventory() {
     }, []);
 
     const handleSubmit = async (e: any) => {
-        setValue({ ...empty })
+        // setValue({ ...empty })
         e.preventDefault()
         if (date) {
             formData.date = date.format('DD-MM-YYYY').toString()
@@ -72,7 +57,7 @@ export default function Inventory() {
         // console.log(date?.format('DD-MM-YYYY').toString())
         // console.log(formData)
 
-        (title == "Edit Product") ? update() : await addDoc(stocksCollections, formData)
+        (title === "Edit Product") ? update() : await addDoc(stocksCollections, formData)
 
         setOpen(false)
     }
@@ -82,15 +67,17 @@ export default function Inventory() {
         setOpen(true)
     }
     const update = async () => {
-        const stocksDoc = doc(db, "stocks", value.id)
-        await updateDoc(stocksDoc, value)
+        const stocksDoc = doc(db, "stocks", values.id)
+        await updateDoc(stocksDoc, formData)
     }
     // console.log(stocks)
 
     const editModal = (record: any) => {
-        setTitle("Edit Product")
-        setValue({ ...record })
-        setOpen(true)
+        setTitle("Edit Product");
+        // Set both value and formData states with the product data
+        setValue({...record});
+        console.log(values)
+        setOpen(true);
     }
 
     const handleCancel = () => {
@@ -98,7 +85,6 @@ export default function Inventory() {
     };
 
     const addStock = async (e: any) => {
-        setValue(e.target.value);
         const { name, value } = e.target;
         setFormData({
             ...formData,
@@ -185,12 +171,12 @@ export default function Inventory() {
                 <Modal title={title} open={open} onOk={handleSubmit} onCancel={handleCancel}>
                     <form action="" method="post">
                         <Space direction="vertical" style={{ width: '100%' }}>
-                            <Input placeholder='Enter product code...' name='code' onChange={addStock} value={value.code} />
-                            <Input placeholder='Enter product name...' name='name' onChange={addStock} value={value.name} />
-                            <Input placeholder='Enter Instructions...' name='instruction' onChange={addStock} value={value.instruction} />
-                            <Input placeholder='Enter Status...' name='status' value={value.status} onChange={addStock} />
+                            <Input placeholder='Enter product code...' name='code' onChange={addStock} />
+                            <Input placeholder='Enter product name...' name='name' onChange={addStock} />
+                            <Input placeholder='Enter Instructions...' name='instruction' onChange={addStock} />
+                            <Input placeholder='Enter Status...' name='status' onChange={addStock} />
                             <DatePicker name='date' onChange={(newDate) => setDate(newDate)} />
-                            <Input placeholder='Enter quantity...' name='quantity' onChange={addStock} value={value.quantity} />
+                            <Input placeholder='Enter quantity...' name='quantity' onChange={addStock} />
                         </Space>
                     </form>
 
