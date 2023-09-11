@@ -149,12 +149,12 @@ export default function Inventory() {
             {
                 title: 'Actions',
                 key: 'actions',
-                render: (text: any, record: any) => (
+                render: (_: undefined, record: any) => (
                     <Space size="middle">
                         <Button icon={<EditFilled />} onClick={() => editModal(record)} style={{ color: "#2123bf" }}>
                             Edit
                         </Button>
-                        <Button icon={<DeleteFilled />} onClick={() => deleteStock(record.id)} danger className='danger'>
+                        <Button icon={<DeleteFilled />} onClick={() => deleteStock(record.id) } danger className='danger'>
                             Delete
                         </Button>
                     </Space>
