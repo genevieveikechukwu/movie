@@ -21,7 +21,7 @@ export default function Inventory() {
         instruction: '',
         status: 'pending',
         date: '', // Date value, initialize it as needed
-        quantity: 0,
+        quantity: '0',
     }
     const [open, setOpen] = useState(false);
     const [stocks, setStocks] = useState<DataType[]>([]);
@@ -51,18 +51,23 @@ export default function Inventory() {
 
         }
         getStocks()
+        const intervalId = setInterval(getStocks, 2000);
+
+        return () => {
+            clearInterval(intervalId);
+        };
+
     }, []);
 
     const handleSubmit = async (e: any) => {
-        // setValue({ ...empty })
         e.preventDefault()
         if (date) {
             formData.date = date.format('DD-MM-YYYY').toString()
+            values.date = date.format('DD-MM-YYYY').toString()
         }
-        // console.log(date?.format('DD-MM-YYYY').toString())
-        // console.log(formData)
+        console.log(values);
 
-        (title === "Edit Product") ? update() : await addDoc(stocksCollections, formData)
+        (title === "Edit Product") ? update() : await addDoc(stocksCollections, formData);
 
         setOpen(false)
     }
@@ -73,35 +78,35 @@ export default function Inventory() {
         setOpen(true)
     }
     const update = async () => {
-        const stocksDoc = doc(db, "stocks", values.id)
-        await updateDoc(stocksDoc, formData)
+        const stocksDoc = doc(db, "stocks", values.id);
+        await updateDoc(stocksDoc, values)
     }
     // console.log(stocks)
 
     const editModal = (record: any) => {
-        setTitle("Edit Product");
-        // Set both value and formData states with the product data
-        setValue({...record});
-        console.log(values)
         setOpen(true);
+        setTitle("Edit Product");
+        setValue(record);
+        setName(record.name)
+        setCode(record.code)
+        setInstruction(record.instruction)
+        setQuantity(record.quantity)
+        setStatus(record.status)
+        console.log(values)
+
     }
 
     const handleCancel = () => {
         setOpen(false);
     };
 
-    const addStock = async (e: any) => {
-        setName(e.target.value)
-        setCode(e.target.value)
-        setInstruction(e.target.value)
-        setQuantity(e.target.value)
-        setStatus(e.target.value)
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    }
+    // const addStock = async (e: any) => {
+    //     const { name, value } = e.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value,
+    //     });
+    // }
 
     const deleteStock = async (id: string) => {
         const stocksDoc = doc(db, "stocks", id)
@@ -156,6 +161,56 @@ export default function Inventory() {
                 ),
             },
         ]
+    const addName = (e: any) => {
+        setName(e.target.value);
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+        setValue({ ...values, name: value })
+    };
+
+    const addCode = (e: any) => {
+        setCode(e.target.value);
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+        setValue({ ...values, code: value })
+    };
+
+    const addInstruction = (e: any) => {
+        setInstruction(e.target.value);
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+        setValue({ ...values, instruction: value })
+    };
+
+    const addQuantity = (e: any) => {
+        setQuantity(e.target.value);
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+        setValue({ ...values, quantity: value })
+    };
+
+    const addStatus = (e: any) => {
+        setStatus(e.target.value);
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+        setValue({ ...values, status: value })
+    };
+
 
     return (
         <>
@@ -182,12 +237,12 @@ export default function Inventory() {
                 <Modal title={title} open={open} onOk={handleSubmit} onCancel={handleCancel}>
                     <form action="" method="post">
                         <Space direction="vertical" style={{ width: '100%' }}>
-                            <Input placeholder='Enter product code...' name='code' onChange={addStock} value={code}/>
-                            <Input placeholder='Enter product name...' name='name' onChange={addStock} value={name}/>
-                            <Input placeholder='Enter Instructions...' name='instruction' onChange={addStock}value={instruction} />
-                            <Input placeholder='Enter Status...' name='status' onChange={addStock} value={status}/>
+                            <Input placeholder='Enter product code...' name='code' onChange={addCode} value={code} />
+                            <Input placeholder='Enter product name...' name='name' onChange={addName} value={name} />
+                            <Input placeholder='Enter Instructions...' name='instruction' onChange={addInstruction} value={instruction} />
+                            <Input placeholder='Enter Status...' name='status' onChange={addStatus} value={status} />
                             <DatePicker name='date' onChange={(newDate) => setDate(newDate)} />
-                            <Input placeholder='Enter quantity...' name='quantity' onChange={addStock} value={quantity}/>
+                            <Input placeholder='Enter quantity...' name='quantity' onChange={addQuantity} value={quantity} />
                         </Space>
                     </form>
 
