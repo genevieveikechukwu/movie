@@ -9,71 +9,20 @@ interface DataType {
 
 }
 
-export const data: DataType[] = [
-  {
-    key: '4',
-    productCode: 'JKL012',
-    product: 'Product D',
-    instruction: 'Fragile Handling',
-    status: 'Active',
-    date: '2023-04-05',
-    quantity: '100/100',
-  },
-  {
-    key: '5',
-    productCode: 'MNO345',
-    product: 'Product E',
-    instruction: 'No Special Instructions',
-    status: 'Inactive',
-    date: '2023-05-12',
-    quantity: '350/500',
-  },
-  {
-    key: '6',
-    productCode: 'PQR678',
-    product: 'Product F',
-    instruction: 'Minimal Assembly',
-    status: 'Active',
-    date: '2023-06-18',
-    quantity: '300/400',
-  },
-  {
-    key: '7',
-    productCode: 'STU901',
-    product: 'Product G',
-    instruction: 'Professional Installation Required',
-    status: 'Inactive',
-    date: '2023-07-22',
-    quantity: '50/50',
-  },
-  {
-    key: '8',
-    productCode: 'VWX234',
-    product: 'Product H',
-    instruction: 'DIY Assembly',
-    status: 'Active',
-    date: '2023-08-30',
-    quantity: '600/700',
-  },
-  {
-    key: '9',
-    productCode: 'YZA567',
-    product: 'Product I',
-    instruction: 'No Assembly Required',
-    status: 'Inactive',
-    date: '2023-09-14',
-    quantity: '750/800',
-  },
-  {
-    key: '10',
-    productCode: 'BCD890',
-    product: 'Product J',
-    instruction: 'Custom Installation',
-    status: 'Active',
-    date: '2023-10-02',
-    quantity: '400/500',
-  },
+ const data: DataType[] = [
 
 ];
+for (let i = 0; i < 32; i++) {
+  data.push({
+    key: `${i}`,
+    productCode: `BC4${i}AA`,
+    product: `Product ${i}`,
+    instruction: `Custom Installation ${i}`,
+    status: 'Pending',
+    date: `2023-10-${i}`,
+    quantity: `50${i}`,
+  });
+}
 
-console.log(data);
+// console.log(data);
+export default data

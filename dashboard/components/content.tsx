@@ -3,7 +3,7 @@ import { EditFilled, DeleteFilled, PlusCircleFilled } from '@ant-design/icons';
 import { useState } from 'react';
 const { Search } = Input;
 const { Content } = Layout;
-import { data } from '../src/utils';
+import data  from '../src/utils';
 
 export default function Inventory() {
     const [open, setOpen] = useState(false);
@@ -17,6 +17,11 @@ export default function Inventory() {
 
     const handleCancel = () => {
         setOpen(false);
+    };
+    const pagination = {
+        pageSize: 7, // Number of items to display per page
+        defaultCurrent: 1,  // Current page number
+        total: data.length, // Total number of items
     };
 
     return (
@@ -77,13 +82,14 @@ export default function Inventory() {
                         dataSource={data}
                         size='middle'
                         style={{ padding: 5 }}
+                        pagination={pagination}
                     />
                 </Layout>
                 <Modal title="Add Product" open={open} onOk={handleOk} onCancel={handleCancel}>
                    <form action="" method="post">
                         <Space direction="vertical" style={{ width: '100%' }}>
                             <Input placeholder='Enter product code...' name='code' />
-                            <Input placeholder='Enter product name...' name='product' />
+                            <Input placeholder='Enter product name...' name='name' />
                             <Input placeholder='Enter Instructions...' name='instruction' />
                             <Input placeholder='Enter Status...' name='status' value={"pending"} />
                             <DatePicker name='date' />
