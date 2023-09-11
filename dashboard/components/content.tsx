@@ -28,7 +28,12 @@ export default function Inventory() {
     const [formData, setFormData] = useState(empty)
     const [date, setDate] = useState<Dayjs | null>(null);
     const [title, setTitle] = useState("");
-    const [values, setValue] = useState(empty)
+    const [values, setValue] = useState(empty);
+    const [name, setName] = useState("")
+    const [code, setCode] = useState("")
+    const [status, setStatus] = useState("")
+    const [instruction, setInstruction] = useState("")
+    const [quantity, setQuantity] = useState("")
 
 
     const stocksCollections = collection(db, "stocks");
@@ -64,6 +69,7 @@ export default function Inventory() {
 
     const showModal = () => {
         setTitle("Add a Product")
+        setValue(empty)
         setOpen(true)
     }
     const update = async () => {
@@ -85,6 +91,11 @@ export default function Inventory() {
     };
 
     const addStock = async (e: any) => {
+        setName(e.target.value)
+        setCode(e.target.value)
+        setInstruction(e.target.value)
+        setQuantity(e.target.value)
+        setStatus(e.target.value)
         const { name, value } = e.target;
         setFormData({
             ...formData,
@@ -171,12 +182,12 @@ export default function Inventory() {
                 <Modal title={title} open={open} onOk={handleSubmit} onCancel={handleCancel}>
                     <form action="" method="post">
                         <Space direction="vertical" style={{ width: '100%' }}>
-                            <Input placeholder='Enter product code...' name='code' onChange={addStock} />
-                            <Input placeholder='Enter product name...' name='name' onChange={addStock} />
-                            <Input placeholder='Enter Instructions...' name='instruction' onChange={addStock} />
-                            <Input placeholder='Enter Status...' name='status' onChange={addStock} />
+                            <Input placeholder='Enter product code...' name='code' onChange={addStock} value={code}/>
+                            <Input placeholder='Enter product name...' name='name' onChange={addStock} value={name}/>
+                            <Input placeholder='Enter Instructions...' name='instruction' onChange={addStock}value={instruction} />
+                            <Input placeholder='Enter Status...' name='status' onChange={addStock} value={status}/>
                             <DatePicker name='date' onChange={(newDate) => setDate(newDate)} />
-                            <Input placeholder='Enter quantity...' name='quantity' onChange={addStock} />
+                            <Input placeholder='Enter quantity...' name='quantity' onChange={addStock} value={quantity}/>
                         </Space>
                     </form>
 
