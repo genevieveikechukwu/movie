@@ -1,4 +1,4 @@
-interface DataType {
+export interface DataType {
     key: string,
     productCode: string,
     product: string,

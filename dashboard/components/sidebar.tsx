@@ -5,7 +5,7 @@ const { Sider, Content } = Layout;
  function SideBar() {
   return (
     <>
-          <Sider style={{ color: "#CCCCCC", }} breakpoint="lg" collapsedWidth="0">
+          <Sider style={{ color: "#CCCCCC", height:"100vh"}} breakpoint="lg" collapsedWidth="0">
               <Space direction="vertical" size="middle" style={{ fontSize: 20, paddingLeft: 10 }}>
                   <div></div>
                   Overview
